@@ -10,7 +10,7 @@ Yaks
 
 - [TODO.md](doc/TODO.md) - my working stuff
 - [yaks.md](doc/yaks.md) - design
-  - [data-types.md](doc/design.md) - Bool Num Vec Func, then List
+  - [data-types.md](doc/data-types.md) - `Bool Int` -> `Float Func` -> `Class`
   - [syntax.md](doc/syntax.md) - Ideas for Yaks syntax
   - [blog.md](doc/blog.md) - What I might want to put on the blog
 - Blog

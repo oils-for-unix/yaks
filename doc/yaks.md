@@ -19,9 +19,8 @@ A language that's like our use of Python and mycpp:
 
 - To experiment with something like Zig's comptime, C++ constexpr/consteval
   - Should replace a lot of code gen in Oils?
-
-- To experiment with an interpreter for a static language -- like a comptime
-  interpreter
+  - This requires an **interpreter** for a static language, which is
+    interesting
 
 - To experiment with mixing dynamic and static styles --
   - Python/mycpp pair 
@@ -38,6 +37,7 @@ A language that's like our use of Python and mycpp:
       real
     - "The best part is that all three languages share pretty much the same syntax, and they are built so that calling from higher level to lower level variant is effortless. This gives us the ability to use the rich Rust ecosystem from a level 2/3 or even level 4 language."
       - there is a problem with mixed stacks, and composition
+    - This is hinting at the "language cacophony" problem
 
 - LATER: experiment with module systems
   - that's the main thing bad with mycpp
@@ -57,8 +57,9 @@ Lower Priority
 - Yaks TAPL -- the arithmetic language 
   - forms: if, unary and binary ops
   - types: Bool, Int
+  - Do we also want the compiler here? 
 
-- Yaks C -- 
+- Yaks Comptime WASM ?  (or Yaks C, to be traditional)
   - forms: fn, apply, var, set, do -- also if is IMPERATIVE
   - types: Bool, Num, Vec/Array
   - Key point: it's NOT homoniconic
@@ -66,14 +67,13 @@ Lower Priority
     - no recursion / tail style!
     - doseq?
 
-- Yaks Zig
-  - `(comptime x (+ 2 3)`, which is like `var`
+- Yaks IR for Oils/mycpp
+  - AN IR for compiling to C++
+  - Why?  Because we want the mycpp to stand on its own a bit.
+  - We want some notion of correctness, not just generating textual C++
 
-- Yaks for Oils -- mycpp/Python pair
-  - This is really an IR for compiling to C++ ?
-
-These are all IMPERATIVE langauges, they are not Lispy!  They are not
-homoiconic.
+These are all IMPERATIVE langauges.  They are not Lispy; they are not
+homoiconic!
 
 We just use the Lisp syntax since it's simple to parse.
 
@@ -88,7 +88,7 @@ We just use the Lisp syntax since it's simple to parse.
     - what about the lexer?
       - would you write a mini re2c?
 
-## Yaks like Oils C++
+## Yaks IR for Oils mycpp
 
 Code
 
@@ -128,7 +128,7 @@ We already have that -- it's Python
 
 But this is a static interpreter I guess
 
-### ASDL
+### ASDL Implemented with macros?
 
 - Enum Data - desguaring to classes
   - are these macros that generate (Class)  or (def x Class) ?
@@ -144,33 +144,6 @@ But this is a static interpreter I guess
   just like you can read
 
 - Infix
-
-
-## Bolt
-
-- Follow Bolt, an OO language implemented in OCaml
-  - TAPL doesn't seem to have an implementation
-  - <https://mukulrathi.com/create-your-own-programming-language/intro-to-type-checking/>
-  - Although he uses a repetitive AST style, not the map
-  - Also typing environment is a list, not a Dict !
-  - Dicts are missing from OCaml!
-
-- <https://github.com/mukul-rathi/bolt/blob/master/src/frontend/typing/type_classes.ml>
-  - 143 lines
-
-- Does Bolt have function types?  I think we need those
-  - or maybe we don't need first class ones?
-
-- <https://mukulrathi.com/create-your-own-programming-language/inheritance-method-overriding-vtable/>
-  - OK this is good, I want inheritance!
-  - Copy all this in TypeScript
-
-## PL Zoo
-
-- <https://plzoo.andrej.com/>
-  - "sub" language: eager, mutable records, statically typed, subtyping
-  - but syntax?
-  - examples don't have subtyping!!!  Bad
 
 ## Differences from Lisp
 

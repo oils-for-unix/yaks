@@ -1,4 +1,4 @@
-# Yaks: A Typed Language From Scratch, With All the Bells and Whistles (Blog)
+# Yaks: A Tiny Typed Language From Scratch, With All the Bells and Whistles
 
 ## Language
 
@@ -100,4 +100,14 @@
 - Shak: Shell implemented in Yaks?
   - can probably use Deno/node.js stdout, and possibly
   - $(echo hi)
+
+
+## Another Framing
+
+Title: A Statically Typed Language in 500 lines of TypeScript (or Python)
+
+"Simplest code that's not a toy" -- Has a good parser with exhaustive
+reasoning, and gives precise error emssages.  Based on Oils.
+
+- Similar to "500 lines or less" book (which doesn't have this)
 
