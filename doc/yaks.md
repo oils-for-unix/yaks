@@ -11,6 +11,21 @@ A language that's like our use of Python and mycpp:
   - These can be frozen into a C++ binary as static data (zero runtime cost)
   - So it's like a comptime
 
+## Slogans
+
+- Yaks: A Tiny Typed Language From Scratch, With All the Bells and Whistles
+  - For Yaks-TAPL
+
+- Yaks: A Tiny Statically Typed Language, with Comptime
+  - Yaks-Mandelbrot
+
+- Yaks: A Statically Typed Language Implemented in Itself
+  - Yaks-Bootstrapped
+
+- Yaks: A Flexible Statically Typed Language You Can Write Like Python or
+  JavaScript (or Lisp)
+  - Yaks IR / Yaks mycpp / Yaks Oils
+
 ## Why work on this?
 
 - To learn to write type checking algorithms
@@ -39,6 +54,26 @@ A language that's like our use of Python and mycpp:
       - there is a problem with mixed stacks, and composition
     - This is hinting at the "language cacophony" problem
 
+- To experiment with unifying typed Python and JavaScript
+    - Static TypeScript - https://news.ycombinator.com/item?id=20873693
+    - lots of good feedback here
+
+- Problem statement from Jamie Brandon:
+  - REPL'd and fast Go/Swift/Rust/C++/Zig, i.e. language with value types and memory control
+  - https://news.ycombinator.com/item?id=37267822
+
+- Experiment with VALUE TYPES
+  - Neither Python nor JS source code has a way of representing that!
+  - C#, a GC language, also seems a bit weird -- it has 'struct'
+    - wouldn't it make sense to have pointers and values?  Not struct and
+      class?  This seems non-orthogonal
+
+- Text format for parsed languages is kind of interesting
+  - it has full location info
+  - implement it in a statically typed language
+  - similar to WASM text format
+    - though I wonder if "\n" style escaping is a limitation or not
+
 - LATER: experiment with module systems
   - that's the main thing bad with mycpp
     - fix the problems with default arguments in headers
@@ -52,7 +87,13 @@ Lower Priority
 - Experiment with unified Linter/formatter/translator
   - and syntax highlighter?
 
-## Three Dialects of Yaks
+### Questions
+
+- What's the smallest statically typed language implemented in itself?
+  - must have a type checker
+  - C4 is close, but it's dynamically typed, with just char and int.
+
+## Four Dialects of Yaks?
 
 - Yaks TAPL -- the arithmetic language 
   - forms: if, unary and binary ops
@@ -66,6 +107,14 @@ Lower Priority
     - so no macros
     - no recursion / tail style!
     - doseq?
+
+- Yaks Bootstrapped
+  - what does it take to write it in itself?
+  - You need sum and product types I think
+  - what do we do about the REGEX?
+    - write our own little Pike inspired regex interpreter?
+    - he parsed the regex and interpreted it at the same time though
+    - we need char classes
 
 - Yaks IR for Oils/mycpp
   - AN IR for compiling to C++
@@ -88,6 +137,14 @@ We just use the Lisp syntax since it's simple to parse.
     - well does comptime change that?  You can generate types on the fly?
     - what about the lexer?
       - would you write a mini re2c?
+
+## Four Syntaxes for Yaks IR?
+
+- Typed Python (mycpp)
+- TypeScript subset -- stretch goal, but I like the Union types.  I wonder if
+  they can become Zephyr ASDL -> C++.
+- The Clojure- and WASM-inspired s-expression format can be typed directly
+- Tea -- a language woven into Oils / YSH
 
 ### ASDL Implemented with macros?
 

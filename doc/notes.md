@@ -126,4 +126,12 @@ Used all the tools:
   - should funcs too?
 
 
+## Chat GPT 
+
+- Completely wrong about Clojure and macros
+  - So many lies ...
+  - Better:  <https://tryclojure.org/>
+
+- However it did do a great job with web/playground.html
+
 

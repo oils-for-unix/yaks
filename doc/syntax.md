@@ -1,6 +1,56 @@
-## Syntax Notes
+Syntax Notes
+==
+
+## Idea for Location info in YIR
+
+`(+ 3 4)` =>
+
+```
+(Source (file foo.py))
+
+(Tokens
+  [ ( 1 1 ]    # ID, start, length
+  [ + 2 1 ]    # I2
+  [ ws 3 1 ]   
+  [ NUM 4 1 ]  # 3 id 4
+  [ ws 5 1 ]
+  [ NUM 6 1 ]  # 4
+  [ ) 7 1 ]
+)
+```
+
+Then =>
+
+```
+(if (= a 0 |3 4 6|)
+  1
+  (+ a b |5 6 12)
+|2 4 9 10|)  # location of if ( 1 (
+```
+
+- So yeah every node has N children, and there are N + 1 numbers at the end?
+  Seems fine.
+
+## Meaning of `[] ()` ?
+
+Should they be synonyms?
 
     [+ 1 [* 3 4]]  # This is allowed
+
+Or should you make [1 2 3] a synonym for '(1 2 3) perhaps?
+
+It's unevaluated
+
+So this makes more sense?
+
+    (fn [x] (do (+ 1 2) (print a)))
+
+Same with
+
+    (fn (-> [x Int] [y (List Int)] (List Int))
+      (+ x y))
+
+What was that f-exprs thing?  Unifying functions and macros in Lisp?
 
 ### Clojure
 
@@ -305,15 +355,91 @@ Splicing is $(a...)
 Can also have multiple `$$` for nested quote blocks
 
 
-## Chat GPT Completely Wrong About Clojure and Macros
-
-2023-08: So many lies when asking it about macros
 
 
-Better
-
-- <https://tryclojure.org/>
+## Old
 
 
 
+(Top level is only definitions.  No executable code.)
+
+And then you can decorate nodes by index:
+
+```
+
+(+#2
+  3#4
+  4#6
+)#1   # ID is one
+
+```
+
+How about something less noisy
+
+```
+(+,2
+  3,4
+  4,6
+),1   # ID is one
+```
+
+```
+(+,2 3,4 4,6),1 
+```
+
+Looks better
+
+```
+(+,2 a,4 b,6),1 
+```
+
+Looks worse:
+
+```
+(+,2 1.0,4 2.0,6),1 
+```
+
+Allow `.` or `:`
+
+```
+(+.2 1.0:4 2.0:6).1 
+```
+
+Or make it a suffix in ():
+
+```
+(+ 1 2 (f).7 {2 4 6}).1
+```
+
+Prefix:
+
+```
+1.({2 4 6} + a b 7.(f))
+```
+
+Or put everything inside ()
+
+```
+({2 4 6} 
+  + a b
+  ({7} f)
+)
+
+```
+
+OK this isn't horrible.  It show you location of each node, without  messing up
+readability of expression that much
+
+
+```
+(|2 4 6|
+  + a b
+  (|7| f)
+)
+
+(|2 4|
+ if (|3 4 6| = a 0)
+    1
+    (|5 6 12| + a b)
+```
 
