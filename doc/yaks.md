@@ -32,11 +32,6 @@ A language that's like our use of Python and mycpp:
   - See lang-table.md -- there are surprisingly few static langauges
     implemented in static languages.
 
-- To experiment with something like Zig's comptime, C++ constexpr/consteval
-  - Should replace a lot of code gen in Oils?
-  - This requires an **interpreter** for a static language, which is
-    interesting
-
 - To experiment with mixing dynamic and static styles --
   - Python/mycpp pair 
   - JavaScript/TypeScript pair -- matklad noted the visitor issue is more dynamic
@@ -58,21 +53,14 @@ A language that's like our use of Python and mycpp:
     - Static TypeScript - https://news.ycombinator.com/item?id=20873693
     - lots of good feedback here
 
-- Problem statement from Jamie Brandon:
-  - REPL'd and fast Go/Swift/Rust/C++/Zig, i.e. language with value types and memory control
-  - https://news.ycombinator.com/item?id=37267822
+### Language Feature Experiments
 
-- Experiment with VALUE TYPES
-  - Neither Python nor JS source code has a way of representing that!
-  - C#, a GC language, also seems a bit weird -- it has 'struct'
-    - wouldn't it make sense to have pointers and values?  Not struct and
-      class?  This seems non-orthogonal
+- Experiment with syntactic macros -- can ASDL and re2c be expressed as macros?
 
-- Text format for parsed languages is kind of interesting
-  - it has full location info
-  - implement it in a statically typed language
-  - similar to WASM text format
-    - though I wonder if "\n" style escaping is a limitation or not
+- To experiment with something like Zig's comptime, C++ constexpr/consteval
+  - Should replace a lot of code gen in Oils?
+  - This requires an **interpreter** for a static language, which is
+    interesting
 
 - LATER: experiment with module systems
   - that's the main thing bad with mycpp
@@ -82,10 +70,30 @@ A language that's like our use of Python and mycpp:
   - Each directory is a module, and compiles to a single C++ translation unit and header
   - dependencies are enforced to be acyclic
 
-Lower Priority
+
+### Performance Experiments
+
+- Experiment with VALUE TYPES
+  - Neither Python nor JS source code has a way of representing that!
+  - C#, a GC language, also seems a bit weird -- it has 'struct'
+    - wouldn't it make sense to have pointers and values?  Not struct and
+      class?  This seems non-orthogonal
+
+- Problem statement from Jamie Brandon:
+  - REPL'd and fast Go/Swift/Rust/C++/Zig, i.e. language with value types and memory control
+  - https://news.ycombinator.com/item?id=37267822
+
+### Architecture for Unified Tools / Unified Representation
 
 - Experiment with unified Linter/formatter/translator
   - and syntax highlighter?
+
+- Textual IR for parsed languages is kind of interesting - a NARROW WAIST of
+  course
+  - it has full location info
+  - implement it in a statically typed language
+  - similar to WASM text format
+    - though I wonder if "\n" style escaping is a limitation or not
 
 ### Questions
 

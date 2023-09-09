@@ -1,6 +1,22 @@
 Yaks IR for Oils mycpp
 ===
 
+For syntax, see [syntax.md](syntax.md)
+
+Idea is to have a homogeneous tree that's readable, but also location info.
+
+TODO: look at LLVM IR text format.  How does it encode locations?
+
+- https://clang.llvm.org/doxygen/group__CINDEX__LOCATIONS.html
+  - hm
+
+```
+(if (= a 0 |3 4 6|)
+  1
+  (+ a b |5 6 12)
+|2 4 9 10|)  # location of if ( 1 (
+```
+
 ## Top Level
 
 - modules: import   (Import ?)
