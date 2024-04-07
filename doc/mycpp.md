@@ -57,3 +57,47 @@ Later:
 - And then translate a **directory** / module of `*.yaks`  files to a single
   C++ translation unit
 
+## Tweaking Python syntax
+
+Tools we use for Oils dev:
+
+- Interpreter - python2
+- Type Checker - old MyPy version
+- Linter - `devtools/py2_lint.py` uses an old version of pyflakes
+  - which uses `ast.parse()` under the hood
+- Formatter - yapf
+
+Suppose we wanted to add this syntax:
+
+    var x: List[int] = []
+
+Then we would would have to
+
+- patch the interpreter to accept `var`, and `: List[int]`
+- use that same AST for our OWN type checker ?
+- print the code to normal Python 2, and run the linter?
+  - preserve the line numbers
+
+- formatter
+  - hm this one is tough
+  - but I don't really like yapf either
+  - I guess we need a Python AST
+
+### Yaks formatter?
+
+- Can the IR support physical source code too?
+
+- Not just logical?
+
+- I think we would want
+  - INDENT DEDENT tokens
+
+- And then INSIGNIFICANT tokens -- Ignored_* in OilS
+  - whitespace
+    - an entire whitespace line, and intra-line too?
+  - comment
+  - line continuation
+
+And I wonder if we could do a Yaks -> Yaks transformation, and then print it back?
+
+It's just mutating whitespace tokens
