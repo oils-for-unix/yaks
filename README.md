@@ -3,8 +3,11 @@ Yaks
 
 ## Slogans
 
-- Oils lexing/parsing/errors , TAPL Typed Arithmetic (by way of matklad),
-  Norvig's Lispy (syntax and evaluator)
+Mashing up:
+
+- Oils code representation: lexing/parsing/errors 
+- TAPL Typed Airth / Bool Int Language (by way of matklad),
+- Norvig's Lispy (syntax and evaluator)
 
 ## Docs
 
